@@ -1,0 +1,67 @@
+﻿<Window x:Class="CopyFileToWithThreads.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="CopyToFile" Height="365" Width="720">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="50"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="480"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="20"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="From"/>
+            <TextBox x:Name="txbFromFile"/>
+            <Button x:Name="btnFromFile" Content="File..." Command="{Binding FromFileCommand}"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="To"/>
+                <TextBox x:Name="txbToFile"/>
+                <Button x:Name="btnToFile" Content="File..." Command="{Binding ToFileCommand}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <ProgressBar x:Name="pbLoading"
+                             Width="560"
+                             Height="30"
+                             Margin="10"
+                             Maximum="100"/>
+                    <TextBlock x:Name="textProgress" HorizontalAlignment="Right" FontSize="22" Text="0 %"/>
+                </StackPanel>
+                <StackPanel>
+                    <Button x:Name="btnCopyFile" Content="Copy" Margin="5" Command="{Binding CopyFileCommand}"/>
+                    <Button x:Name="btnSuspend" Content="Suspend" Margin="5,0,5,5" Command="{Binding SuspendCommand}"/>
+                    <Button x:Name="btnResume" Content="Resume" Command="{Binding ResumeCommand}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
