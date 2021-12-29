@@ -95,6 +95,7 @@ namespace CopyFileToWithThreads.ViewModels
                         _mainWindow.pbLoading.Dispatcher.Invoke(new Action(() => _mainWindow.pbLoading.Value += (100 / lines.Length)));
                         _mainWindow.textProgress.Dispatcher.Invoke(new Action(() => _mainWindow.textProgress.Text = $"{_mainWindow.pbLoading.Value} %"));
                         File.AppendAllText(destFile, lines[i]);
+                        File.AppendAllText(destFile, "\n");
                         Thread.Sleep(500);
                     }
                     _mainWindow.pbLoading.Dispatcher.Invoke(new Action(() => _mainWindow.pbLoading.Value = 100));
